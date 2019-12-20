@@ -23,9 +23,7 @@ export default function CharacterList() {
     <section className="character-list">
       
       {characters.map(character => 
-        <div key={character.id}>
-          <h3>{character.name}</h3>
-        </div>
+        <CharacterCard character={character} />
       )}
     </section>
   );
