@@ -16,7 +16,7 @@ const Image = styled.img`
 export default function CharacterCard(props) {
   const char = props.character;
   return (
-    <Card>
+    <Card key={char.id}>
       <Image src={char.image} />
       <h2>{char.name}</h2>
       <p>{char.name} is {char.status}</p>
