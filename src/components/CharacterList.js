@@ -9,20 +9,21 @@ export default function CharacterList() {
   let [characters, setCharacters] = useState([]);
   let [searchTerm, setSearchTerm] = useState("");
   let [searchResult, setSearchResult] = useState([]);
+  let [page, setPage] = useState(1);
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-    axios.get(`https://rickandmortyapi.com/api/character/`)
+    axios.get(`https://rickandmortyapi.com/api/character/?page=` + page)
       .then(response => {
-        console.log(response.data.results);
+        console.log(response.data);
         setCharacters(response.data.results);
         setSearchResult(response.data.results);
       })
       .catch(error => {
         console.log("Broken Robot", error);
       })
-  },[]);
+  },[page]);
 
   useEffect(() => {
   
@@ -41,12 +42,15 @@ export default function CharacterList() {
   `;
   return (
     <div>
-    <SearchForm searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-    <List>
-      {searchResult.map(character => 
-        <CharacterCard character={character} key={character.id}/>
-      )}
-    </List>
+      <SearchForm searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+      <List>
+        {searchResult.map(character => 
+          <CharacterCard character={character} key={character.id}/>
+        )}
+      </List>
+      <button onClick={() => {--page; setPage(page)}}>Previous</button>
+      <button onClick={() => {++page; setPage(page)}}>Next</button>
     </div>
+    
   );
 }
