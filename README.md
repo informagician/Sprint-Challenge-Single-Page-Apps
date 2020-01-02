@@ -27,6 +27,9 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
+even though the first loading time maybe slightly longer, user's next interactions will be without a page refresh since no new network request will be sent out,
+and since only elements with state change will rerender on the dom, user will experience a fast flashless content update on the page.
+
 > Answer:
 
 ## Project Set Up
